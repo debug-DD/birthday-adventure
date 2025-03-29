@@ -97,13 +97,13 @@ const getPreparationInstructions = (title: string): PreparationInstructions => {
 
 const getFunDetails = (title: string) => {
   switch (title) {
-    case "Dylan&apos;s Smoothie Bar":
+    case "Dylan's Smoothie Bar":
       return "🎭 Step right up to the most colorful bar in town! Your personal smoothie artist (that&apos;s me!) is ready to blend up a storm. We&apos;re talking secret recipes, fancy umbrella garnishes, and maybe even a smoothie-making dance or two. Warning: Excessive happiness and brain freeze may occur! 🌈";
-    case "Dylan&apos;s Massage Parlour":
+    case "Dylan's Massage Parlour":
       return "✨ Welcome to your personal relaxation station! Get ready for the most luxurious at-home spa experience ever. Featuring aromatic candles, soothing music, and your very own massage therapist (still me!). No fancy spa has this much love per square foot! 💆‍♀️";
-    case "Dylan&apos;s Noodling Experience":
+    case "Dylan's Noodling Experience":
       return "🌊 Dive into the ultimate pool relaxation session! Picture this: You, a comfy pool noodle, and the gentle sway of the water. Your personal pool party host (that&apos;s me!) has prepared the perfect temperature (well... hopefully!), some refreshing drinks, and maybe even some fun pool games! Warning: May cause extreme relaxation, pruney fingers, and occasional squeals about water temperature! 🏊‍♀️✨";
-    case "Dylan&apos;s Restaurant/Baking Show":
+    case "Dylan's Restaurant/Baking Show":
       return "📺 Lights, Camera, Kitchen Action! Your favorite chef (me again!) is ready to put on a show that would make Gordon Ramsay jealous. Expect cooking commentary, dramatic plate reveals, and possibly a few kitchen dance breaks. No angry chef outbursts guaranteed! 🎬";
     case "Backyard Picnic & Ice Cream Date":
       return "🌟 Get ready for the ultimate outdoor feast! Picture this: A cozy blanket, fairy lights twinkling, your favorite snacks, and an ice cream selection that would make a dessert shop envious. Plus, your personal picnic curator (still yours truly!) has some magical surprises planned! 🧺✨";
