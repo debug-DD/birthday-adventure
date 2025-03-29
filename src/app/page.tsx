@@ -1,103 +1,192 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
+import ReactConfetti from "react-confetti";
+import { useState, useEffect } from "react";
+import { HeartIcon, GiftIcon, PhotoIcon, MusicalNoteIcon } from "@heroicons/react/24/solid";
+import { useRouter } from 'next/navigation';
 
-export default function Home() {
+const HEARTS = ["❤️", "💖", "💝", "💕", "💗", "💓"];
+
+const Heart = ({ delay = 0, side = "left" }) => {
+  const randomRotation = Math.random() * 360;
+  const rotationSpeed = Math.random() > 0.5 ? 1 : -1;
+  const spinAmount = 360 * (Math.floor(Math.random() * 3) + 1);
+  const randomHeart = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <motion.div
+      initial={{ 
+        y: -100,
+        x: side === "left" ? -20 : 20,
+        rotate: randomRotation,
+        scale: Math.random() * 0.5 + 0.5, // Random size between 0.5 and 1
+      }}
+      animate={{ 
+        y: ["-10vh", "110vh"],
+        x: [
+          side === "left" ? -20 : 20,
+          side === "left" ? -40 : 40
+        ],
+        rotate: [randomRotation, randomRotation + (spinAmount * rotationSpeed)]
+      }}
+      transition={{
+        duration: Math.random() * 1 + 2,
+        repeat: Infinity,
+        delay: delay,
+        ease: "linear"
+      }}
+      className="fixed z-0 text-3xl"
+      style={{ 
+        [side]: `${Math.random() * 15 + 5}%`,
+        top: 0
+      }}
+    >
+      {randomHeart}
+    </motion.div>
+  );
+};
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+const IceCream = ({ delay = 0, side = "left" }) => {
+  const randomRotation = Math.random() * 360;
+  const rotationSpeed = Math.random() > 0.5 ? 1 : -1; // Randomly rotate clockwise or counterclockwise
+  const spinAmount = 360 * (Math.floor(Math.random() * 3) + 1); // Random number of full spins (1-3)
+
+  return (
+    <motion.div
+      initial={{ 
+        y: -100,
+        x: side === "left" ? -20 : 20,
+        rotate: randomRotation
+      }}
+      animate={{ 
+        y: ["-10vh", "110vh"],
+        x: [
+          side === "left" ? -20 : 20,
+          side === "left" ? -40 : 40
+        ],
+        rotate: [randomRotation, randomRotation + (spinAmount * rotationSpeed)]
+      }}
+      transition={{
+        duration: Math.random() * 1 + 2, // Random duration between 2-3 seconds
+        repeat: Infinity,
+        delay: delay,
+        ease: "linear"
+      }}
+      className="fixed z-0"
+      style={{ 
+        [side]: `${Math.random() * 15 + 5}%`,
+        top: 0
+      }}
+    >
+      <svg
+        width="48"
+        height="48"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="drop-shadow-lg"
+      >
+        {/* Cone */}
+        <path
+          d="M25 30L32 62L39 30"
+          fill="#D4A676"
+          stroke="#8B5E3C"
+          strokeWidth="2"
+        />
+        {/* Ice Cream Scoops */}
+        <circle
+          cx="32"
+          cy="18"
+          r="16"
+          fill="#FFB5E8"
+          stroke="#FF69B4"
+          strokeWidth="2"
+        />
+        <circle
+          cx="24"
+          cy="26"
+          r="12"
+          fill="#FFE4E1"
+          stroke="#FFB6C1"
+          strokeWidth="2"
+        />
+        <circle
+          cx="40"
+          cy="26"
+          r="12"
+          fill="#FF9ECD"
+          stroke="#FF69B4"
+          strokeWidth="2"
+        />
+        {/* Sprinkles */}
+        <path
+          d="M26 12L28 14M34 10L36 12M30 8L32 10M38 14L40 16M22 16L24 18"
+          stroke="#FF69B4"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </motion.div>
+  );
+};
+
+export default function PasswordPage() {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Replace 'your-chosen-password' with whatever password you want
+    if (password === 'nugget') {
+      localStorage.setItem('isAuthenticated', 'true');
+      router.push('/wishes');
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 2000);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-400 via-purple-300 to-pink-300 flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-md w-full"
+      >
+        <h1 className="text-2xl md:text-3xl font-bold text-emerald-800 text-center mb-6">
+          Happy Birthday! 🎉
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter the magic word..."
+              className={`w-full px-4 py-3 rounded-lg border-2 ${
+                error ? 'border-red-400' : 'border-emerald-200'
+              } focus:outline-none focus:border-emerald-400 transition-colors`}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full bg-emerald-500 text-white py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            Enter ✨
+          </motion.button>
+          {error && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-500 text-center"
+            >
+              Oops! That's not quite right 😅
+            </motion.p>
+          )}
+        </form>
+      </motion.div>
     </div>
   );
 }
