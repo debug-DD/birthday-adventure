@@ -50,7 +50,7 @@ export default function PasswordPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-red-500 text-sm mt-2"
             >
-              Oops! That's not quite right 😅
+              Oops! That&apos;s not quite right 😅
             </motion.p>
           )}
         </form>

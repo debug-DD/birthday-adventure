@@ -315,7 +315,7 @@ const ActivityPopup = ({ isOpen, onClose, title, description, funDetails, onComp
                     whileTap={{ scale: 0.95 }}
                     className="px-4 py-2 bg-emerald-500 rounded-lg hover:bg-emerald-600 transition-colors text-white"
                   >
-                    Let's Do It! 🎉
+                    Let&apos;s Do It! 🎉
                   </motion.button>
                 </div>
               </motion.div>
