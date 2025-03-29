@@ -98,11 +98,11 @@ const getPreparationInstructions = (title: string): PreparationInstructions => {
 const getFunDetails = (title: string) => {
   switch (title) {
     case "Dylan's Smoothie Bar":
-      return "🎭 Step right up to the most colorful bar in town! Your personal smoothie artist (that&apos;s me!) is ready to blend up a storm. We&apos;re talking secret recipes, fancy umbrella garnishes, and maybe even a smoothie-making dance or two. Warning: Excessive happiness and brain freeze may occur! 🌈";
+      return "🎭 Step right up to the most colorful bar in town! Your personal smoothie artist (that's me!) is ready to blend up a storm. We're talking secret recipes, fancy umbrella garnishes, and maybe even a smoothie-making dance or two. Warning: Excessive happiness and brain freeze may occur! 🌈";
     case "Dylan's Massage Parlour":
       return "✨ Welcome to your personal relaxation station! Get ready for the most luxurious at-home spa experience ever. Featuring aromatic candles, soothing music, and your very own massage therapist (still me!). No fancy spa has this much love per square foot! 💆‍♀️";
     case "Dylan's Noodling Experience":
-      return "🌊 Dive into the ultimate pool relaxation session! Picture this: You, a comfy pool noodle, and the gentle sway of the water. Your personal pool party host (that&apos;s me!) has prepared the perfect temperature (well... hopefully!), some refreshing drinks, and maybe even some fun pool games! Warning: May cause extreme relaxation, pruney fingers, and occasional squeals about water temperature! 🏊‍♀️✨";
+      return "🌊 Dive into the ultimate pool relaxation session! Picture this: You, a comfy pool noodle, and the gentle sway of the water. Your personal pool party host (that's me!) has prepared the perfect temperature (well... hopefully!), some refreshing drinks, and maybe even some fun pool games! Warning: May cause extreme relaxation, pruney fingers, and occasional squeals about water temperature! 🏊‍♀️✨";
     case "Dylan's Restaurant/Baking Show":
       return "📺 Lights, Camera, Kitchen Action! Your favorite chef (me again!) is ready to put on a show that would make Gordon Ramsay jealous. Expect cooking commentary, dramatic plate reveals, and possibly a few kitchen dance breaks. No angry chef outbursts guaranteed! 🎬";
     case "Backyard Picnic & Ice Cream Date":
@@ -315,7 +315,7 @@ const ActivityPopup = ({ isOpen, onClose, title, description, funDetails, onComp
                     whileTap={{ scale: 0.95 }}
                     className="px-4 py-2 bg-emerald-500 rounded-lg hover:bg-emerald-600 transition-colors text-white"
                   >
-                    Let&apos;s Do It! 🎉
+                    Let's Do It! 🎉
                   </motion.button>
                 </div>
               </motion.div>

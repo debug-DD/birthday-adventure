@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
+import { motion } from "framer-motion";
 
 export default function PasswordPage() {
   const [password, setPassword] = useState('');
@@ -44,11 +45,13 @@ export default function PasswordPage() {
             Enter ✨
           </button>
           {error && (
-            <p
-              className="text-red-500 text-center"
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-red-500 text-sm mt-2"
             >
-              Oops! That&apos;s not quite right 😅
-            </p>
+              Oops! That's not quite right 😅
+            </motion.p>
           )}
         </form>
       </div>
