@@ -23,7 +23,7 @@ interface ActivityPopupProps {
   title: string;
   description: string;
   funDetails: string;
-  href: string;
+  onComplete: () => void;
 }
 
 interface PreparationInstructions {
@@ -96,7 +96,7 @@ const getPreparationInstructions = (title: string): PreparationInstructions => {
   }
 };
 
-const ActivityPopup = ({ isOpen, onClose, title, description, funDetails, href, onComplete }: ActivityPopupProps & { onComplete: () => void }) => {
+const ActivityPopup = ({ isOpen, onClose, title, description, funDetails, onComplete }: ActivityPopupProps) => {
   const [isConfetti, setIsConfetti] = useState(false);
   const [isCelebrating, setIsCelebrating] = useState(false);
   const [showPreparation, setShowPreparation] = useState(false);
@@ -400,7 +400,6 @@ const ExperienceButton = ({ icon: Icon, title, description, href, isCompleted, o
         title={title}
         description={description}
         funDetails={getFunDetails(title)}
-        href={href}
         onComplete={() => onComplete(title)}
       />
     </>
