@@ -98,7 +98,7 @@ const getPreparationInstructions = (title: string): PreparationInstructions => {
 const getFunDetails = (title: string) => {
   switch (title) {
     case "Dylan's Smoothie Bar":
-      return "🎭 Step right up to the most colorful bar in town! Your personal smoothie artist (that is me!) is ready to blend up a storm. We're talking secret recipes, fancy umbrella garnishes, and maybe even a smoothie-making dance or two. Warning: Excessive happiness and brain freeze may occur! 🌈";
+      return "🎭 Step right up to the most colorful bar in town! Your personal smoothie artist (that is me!) is ready to blend up a storm. We are talking secret recipes, fancy umbrella garnishes, and maybe even a smoothie-making dance or two. Warning: Excessive happiness and brain freeze may occur! 🌈";
     case "Dylan's Massage Parlour":
       return "✨ Welcome to your personal relaxation station! Get ready for the most luxurious at-home spa experience ever. Featuring aromatic candles, soothing music, and your very own massage therapist (still me!). No fancy spa has this much love per square foot! 💆‍♀️";
     case "Dylan's Noodling Experience":
