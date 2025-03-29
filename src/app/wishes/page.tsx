@@ -237,7 +237,19 @@ const ActivityPopup = ({ isOpen, onClose, title, description, funDetails, onComp
                         filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.3))'
                       }}
                     >
-                      Adventure Started! 🌟
+                      <span
+                        style={{
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundImage: 'linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff)',
+                          backgroundSize: '300% 100%',
+                          animation: 'rainbow-move 4s linear infinite',
+                          filter: 'drop-shadow(0 0 8px rgba(0,0,0,0.3))'
+                        }}
+                      >
+                        Adventure Started!
+                      </span>
+                      <span className="text-yellow-400"> 🌟</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -448,6 +460,12 @@ export default function Wishes() {
 
   useEffect(() => {
     setIsClient(true);
+    // Load completed experiences from localStorage
+    const savedExperiences = localStorage.getItem('completedExperiences');
+    if (savedExperiences) {
+      setCompletedExperiences(new Set(JSON.parse(savedExperiences)));
+    }
+
     // Add pixel font and keyframes for rainbow animation
     const style = document.createElement('style');
     style.textContent = `
@@ -477,13 +495,20 @@ export default function Wishes() {
   };
 
   const handleCompleteExperience = (title: string) => {
-    setCompletedExperiences(prev => new Set([...prev, title]));
+    setCompletedExperiences(prev => {
+      const newSet = new Set([...prev, title]);
+      // Save to localStorage
+      localStorage.setItem('completedExperiences', JSON.stringify([...newSet]));
+      return newSet;
+    });
   };
 
   const handleResetExperience = (title: string) => {
     setCompletedExperiences(prev => {
       const newSet = new Set(prev);
       newSet.delete(title);
+      // Save to localStorage
+      localStorage.setItem('completedExperiences', JSON.stringify([...newSet]));
       return newSet;
     });
   };
